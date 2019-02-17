@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <bean id="userService" class="com.itheima.service.impl.UserServiceImpl"/>
+
+    <!-- 配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+
+    </bean>
+
+    <!--配置事务通知-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
+        </tx:attributes>
+
+
+    </tx:advice>
+    <!--声明切面对象-->
+    <!--<bean id="log" class="com.itheima.utils.TransactionManger"></bean>-->
+    <!--配置aop-->
+    <aop:config>
+        <!--配置切入点表达式  需要导入aspectjwear坐标  用来解析切入点表达式
+        void com.itheima.Producer.saleProduct(..)
+        * com.itheima.*.*(..)
+        第一个*代表任意返回类型   第二个*代表包下任意类名  第三个代表此类下任意方法  （..代表参数列表）（）代表没有参数
+        -->
+        <aop:pointcut id="pid" expression="execution(* com.itheima.service.impl.*.*(..))"/>
+        <!--配置切面-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pid"/>
+    </aop:config>
+</beans>

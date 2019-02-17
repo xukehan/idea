@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.UserMapper">
+    <select id="findAll" resultType="user">
+        SELECT * FROM users
+    </select>
+
+    <select id="findById" parameterType="int" resultType="user">
+    select * from users where id=#{id}
+    </select>
+
+
+    <delete id="delete" parameterType="int">
+    DELETE from users where id=#{id}
+    </delete>
+
+
+    <insert id="save" parameterType="user">
+        INSERT INTO users VALUES (#{id},#{username},#{password},#{name},#{age},#{sex},#{address})
+    </insert>
+
+
+    <update id="update" parameterType="user">
+        UPDATE users SET username=#{username},password=#{password},name=#{name},age=#{age},sex=#{sex},address=#{address} WHERE id=#{id}
+    </update>
+
+    <select id="loginUser" parameterType="user" resultType="user">
+        select * from users where username=#{username} and password=#{password}
+    </select>
+
+</mapper>
