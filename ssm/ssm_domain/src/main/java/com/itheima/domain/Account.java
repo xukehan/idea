@@ -6,8 +6,6 @@ public class Account implements Serializable {
     private Integer id;
     private String name;
     private float money;
-    private String wwwww;
-    private String qqqqq;
 
     public Integer getId() {
         return id;
