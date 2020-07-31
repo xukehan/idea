@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface IOrderService {
 
+
     public List<TbOrder> queryOrderList();
 
     public  TbOrder queryOrder(TbOrder param) throws Exception;
