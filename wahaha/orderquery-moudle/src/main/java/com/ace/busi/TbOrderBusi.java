@@ -29,6 +29,6 @@ public class TbOrderBusi {
     }
 
 
-    private sisodfs   ;
+    private sisodfs  sdsd ;
 
 }
