@@ -21,6 +21,8 @@ public interface IOrderService {
 
     public void quart();
 
+    public void nihao();
+
 
 
 }
