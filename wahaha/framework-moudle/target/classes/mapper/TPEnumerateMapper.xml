@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ace.mapper.TPEnumerateMapper" >
+  <resultMap id="BaseResultMap" type="com.ace.pojo.TPEnumerate" >
+    <id column="ATTR_CODE" property="attrCode" jdbcType="VARCHAR" />
+    <result column="ATTR_VALUE" property="attrValue" jdbcType="VARCHAR" />
+    <result column="ATTR_VALUE_NAME" property="attrValueName" jdbcType="VARCHAR" />
+    <result column="PARENT_ATTR_VALUE" property="parentAttrValue" jdbcType="VARCHAR" />
+    <result column="START_DATE" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="END_DATE" property="endDate" jdbcType="TIMESTAMP" />
+    <result column="SHOW_ORDER" property="showOrder" jdbcType="DECIMAL" />
+    <result column="STAND" property="stand" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ATTR_CODE, ATTR_VALUE, ATTR_VALUE_NAME, PARENT_ATTR_VALUE, START_DATE, END_DATE, 
+    SHOW_ORDER, STAND, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_p_enumerate
+    where ATTR_CODE = #{attrCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_p_enumerate
+    where ATTR_CODE = #{attrCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ace.pojo.TPEnumerate" >
+    insert into t_p_enumerate (ATTR_CODE, ATTR_VALUE, ATTR_VALUE_NAME, 
+      PARENT_ATTR_VALUE, START_DATE, END_DATE, 
+      SHOW_ORDER, STAND, REMARK
+      )
+    values (#{attrCode,jdbcType=VARCHAR}, #{attrValue,jdbcType=VARCHAR}, #{attrValueName,jdbcType=VARCHAR}, 
+      #{parentAttrValue,jdbcType=VARCHAR}, #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, 
+      #{showOrder,jdbcType=DECIMAL}, #{stand,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ace.pojo.TPEnumerate" >
+    insert into t_p_enumerate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attrCode != null" >
+        ATTR_CODE,
+      </if>
+      <if test="attrValue != null" >
+        ATTR_VALUE,
+      </if>
+      <if test="attrValueName != null" >
+        ATTR_VALUE_NAME,
+      </if>
+      <if test="parentAttrValue != null" >
+        PARENT_ATTR_VALUE,
+      </if>
+      <if test="startDate != null" >
+        START_DATE,
+      </if>
+      <if test="endDate != null" >
+        END_DATE,
+      </if>
+      <if test="showOrder != null" >
+        SHOW_ORDER,
+      </if>
+      <if test="stand != null" >
+        STAND,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attrCode != null" >
+        #{attrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null" >
+        #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValueName != null" >
+        #{attrValueName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAttrValue != null" >
+        #{parentAttrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showOrder != null" >
+        #{showOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="stand != null" >
+        #{stand,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ace.pojo.TPEnumerate" >
+    update t_p_enumerate
+    <set >
+      <if test="attrValue != null" >
+        ATTR_VALUE = #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValueName != null" >
+        ATTR_VALUE_NAME = #{attrValueName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAttrValue != null" >
+        PARENT_ATTR_VALUE = #{parentAttrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null" >
+        END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showOrder != null" >
+        SHOW_ORDER = #{showOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="stand != null" >
+        STAND = #{stand,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ATTR_CODE = #{attrCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ace.pojo.TPEnumerate" >
+    update t_p_enumerate
+    set ATTR_VALUE = #{attrValue,jdbcType=VARCHAR},
+      ATTR_VALUE_NAME = #{attrValueName,jdbcType=VARCHAR},
+      PARENT_ATTR_VALUE = #{parentAttrValue,jdbcType=VARCHAR},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      END_DATE = #{endDate,jdbcType=TIMESTAMP},
+      SHOW_ORDER = #{showOrder,jdbcType=DECIMAL},
+      STAND = #{stand,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ATTR_CODE = #{attrCode,jdbcType=VARCHAR}
+  </update>
+</mapper>
